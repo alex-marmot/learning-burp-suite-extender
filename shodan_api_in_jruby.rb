@@ -15,8 +15,7 @@ java_import 'burp.IContextMenuInvocation'
 
 import javax.swing.JMenuItem
 
-# import urllib2
-
+KEY = ''
 class BurpExtender
   include IBurpExtender
   include IContextMenuFactory
@@ -46,7 +45,7 @@ class BurpExtender
         service = http_traffic[0].getHttpService()
         hostname = service.getHost()
         ip = IPSocket.getaddress(hostname)
-        uri = URI.parse("https://api.shodan.io/shodan/host/#{ip}?key=1lgyO39gi4FOQqI7Y2TYndvNUJNRGjYe")
+        uri = URI.parse("https://api.shodan.io/shodan/host/#{ip}?key=#{KEY}")
         req = Net::HTTP.get_response(uri)
         response = JSON.parse(req.body)
         puts "This report is last updated on  #{response['last_update']}"
